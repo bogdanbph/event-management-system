@@ -9,7 +9,6 @@ import org.example.eventsmanagementsystem.exception.MissingAuthorizationHeaderEx
 import org.example.eventsmanagementsystem.exception.UserNotAllowedException;
 import org.example.eventsmanagementsystem.model.dto.UserDTO;
 import org.example.eventsmanagementsystem.service.UserService;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -31,8 +30,8 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
-                                    @NotNull HttpServletResponse response,
-                                    @NotNull FilterChain filterChain) throws ServletException, IOException {
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
         String authorization = request.getHeader("Authorization");
         if (authorization == null || authorization.isEmpty()) {
             throw new MissingAuthorizationHeaderException("Missing Authorization header...");

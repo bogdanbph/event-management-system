@@ -1,13 +1,16 @@
 package org.example.eventsmanagementsystem.model.dto;
 
+import jakarta.annotation.Nonnull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.example.eventsmanagementsystem.model.dto.enums.EventType;
 
 import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
+@ToString
 public class EventDTO {
 
     private String title;

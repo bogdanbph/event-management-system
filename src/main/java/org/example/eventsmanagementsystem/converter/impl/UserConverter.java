@@ -13,6 +13,7 @@ public class UserConverter implements ObjectConverter<User, UserDTO> {
         user.setRole(userDTO.role());
         user.setUsername(userDTO.username());
         user.setPassword(PasswordEncoder.encodeDecodePassword(userDTO.password(), true));
+        user.setEmail(user.getEmail());
 
         return user;
     }
@@ -23,6 +24,7 @@ public class UserConverter implements ObjectConverter<User, UserDTO> {
                 .username(user.getUsername())
                 .role(user.getRole())
                 .password(user.getPassword())
+                .email(user.getEmail())
                 .build();
     }
 }

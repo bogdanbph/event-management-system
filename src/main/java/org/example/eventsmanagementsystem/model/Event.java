@@ -5,6 +5,7 @@ import lombok.Data;
 import org.example.eventsmanagementsystem.model.dto.enums.EventType;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity

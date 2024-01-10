@@ -45,4 +45,23 @@ public class EventController {
             return ResponseBuilderHelper.buildResponsePayload("Wrong payload...", HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponsePayload> updateEvent(@PathVariable("id") Long id, @RequestBody EventDTO eventDTO) {
+        try {
+            return ResponseBuilderHelper.buildResponsePayload(eventService.updateEvent(id, eventDTO), HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            return ResponseBuilderHelper.buildResponsePayload("Wrong payload...", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResponsePayload> deleteEvent(@PathVariable("id") Long id) {
+        try {
+            eventService.deleteEvent(id);
+            return ResponseBuilderHelper.buildResponsePayload("Event deleted!", HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return ResponseBuilderHelper.buildResponsePayload("Unknown event...", HttpStatus.NOT_FOUND);
+        }
+    }
 }
