@@ -39,6 +39,14 @@ public class UserController {
         UserDTO user = (UserDTO) request.getAttribute("user");
         notificationService.subscribe(NotificationType.valueOf(type), new EmailNotifier(user.email()));
 
-        return ResponseBuilderHelper.buildResponsePayload("You have subcribed to " + type + ".", HttpStatus.CREATED);
+        return ResponseBuilderHelper.buildResponsePayload("You have subscribed to " + type + ".", HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/newsletter")
+    public ResponseEntity<ResponsePayload> unsubscribeToNewsletter(@RequestParam String type, HttpServletRequest request) {
+        UserDTO user = (UserDTO) request.getAttribute("user");
+        notificationService.unsubscribe(NotificationType.valueOf(type), new EmailNotifier(user.email()));
+
+        return ResponseBuilderHelper.buildResponsePayload("You have unsubscribed successfully from " + type + ".", HttpStatus.OK);
     }
 }

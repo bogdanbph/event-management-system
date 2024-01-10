@@ -6,6 +6,8 @@ import org.example.eventsmanagementsystem.model.dto.NotificationDTO;
 import org.example.eventsmanagementsystem.model.dto.enums.NotificationType;
 import org.example.eventsmanagementsystem.notifier.EventListener;
 
+import java.util.Objects;
+
 @Slf4j
 public class EmailNotifier implements EventListener {
     private final String email;
@@ -30,5 +32,18 @@ public class EmailNotifier implements EventListener {
                     log.info("Sending email to " + email +
                             " because the event called " + event.getTitle() + " has been modified to " + event);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmailNotifier that = (EmailNotifier) o;
+        return Objects.equals(email, that.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
     }
 }

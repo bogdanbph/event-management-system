@@ -53,27 +53,27 @@ public class EventService {
         Event event = new Event();
 
         if (optionalEvent.isPresent()) {
-            isModified = true;
             event = optionalEvent.get();
+            isModified = true;
         }
 
-        if (eventDTO.getEventType() != null) {
+        if (eventDTO.getEventType() != null && eventDTO.getEventType() != event.getType()) {
             event.setType(eventDTO.getEventType());
         }
 
-        if (eventDTO.getTitle() != null) {
+        if (eventDTO.getTitle() != null && !eventDTO.getTitle().equals(event.getTitle())) {
             event.setTitle(eventDTO.getTitle());
         }
 
-        if (eventDTO.getDate() != null) {
+        if (eventDTO.getDate() != null && !eventDTO.getDate().equals(event.getDate())) {
             event.setDate(eventDTO.getDate());
         }
 
-        if (eventDTO.getDescription() != null) {
+        if (eventDTO.getDescription() != null && !eventDTO.getDescription().equals(event.getDescription())) {
             event.setDescription(eventDTO.getDescription());
         }
 
-        if (eventDTO.getPrice() != null) {
+        if (eventDTO.getPrice() != null && !eventDTO.getPrice().equals(event.getPrice())) {
             event.setPrice(eventDTO.getPrice());
         }
 
